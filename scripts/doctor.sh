@@ -150,6 +150,7 @@ check_table "jobs"
 check_table "prompt_templates"
 check_table "workflow_definitions"
 check_table "workflow_executions"
+check_table "opportunities"
 
 # ---------------------------------------------------------------------------
 # n8n
@@ -172,7 +173,7 @@ fi
 # ---------------------------------------------------------------------------
 title "Migration files"
 
-for migration in "000_extensions.sql" "001_schema.sql"; do
+for migration in "000_extensions.sql" "001_schema.sql" "002_opportunities.sql"; do
     if [[ -f "$REPO_ROOT/sql/$migration" ]]; then
         pass "sql/$migration exists"
     else

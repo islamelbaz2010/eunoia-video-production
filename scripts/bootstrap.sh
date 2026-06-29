@@ -80,6 +80,7 @@ info "Applying SQL migrations..."
 migration_files=(
     "000_extensions.sql"
     "001_schema.sql"
+    "002_opportunities.sql"
 )
 
 for migration in "${migration_files[@]}"; do
