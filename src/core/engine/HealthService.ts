@@ -22,6 +22,7 @@ export interface HealthServiceDependencies {
   storageProviders: IStorageProvider[];
   queues: Array<{ getQueueLength(): number }>;
   schedulers: ISchedulerService[];
+  aiProviders?: Array<{ name: string; isAvailable(): boolean }>;
 }
 
 export class HealthService {
@@ -142,11 +143,12 @@ export class HealthService {
 
   checkProviders(): Promise<CheckResult> {
     const start = Date.now();
-    const names = this.deps.storageProviders.map(p => p.name).join(', ');
+    const aiProviders = this.deps.aiProviders ?? [];
+    const names = aiProviders.map(p => p.name).join(', ');
 
     return Promise.resolve({
       status: 'pass',
-      message: `Providers: ${names || 'none'}`,
+      message: `AI Providers: ${names || 'none'}`,
       durationMs: Date.now() - start,
     });
   }

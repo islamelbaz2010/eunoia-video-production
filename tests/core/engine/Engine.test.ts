@@ -82,7 +82,8 @@ describe('Engine', () => {
       engine.registerStorageProvider(provider);
 
       const health = await engine.getHealth();
-      expect(health.checks['providers']!.message).toContain('my-storage');
+      expect(health.checks['storage']!.status).toBe('pass');
+      expect(health.checks['storage']!.message).toContain('storage provider');
     });
   });
 
